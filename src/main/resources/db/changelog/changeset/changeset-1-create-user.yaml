@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-student
+      author: AlexDomas
+      changes:
+        - createTable:
+            tableName: student
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hand
+                  type: boolean
+                  constraints:
+                    nullable: false
