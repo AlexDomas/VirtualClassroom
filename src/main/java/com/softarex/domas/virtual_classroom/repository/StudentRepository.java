@@ -1,6 +1,6 @@
 package com.softarex.domas.virtual_classroom.repository;
 
-import com.softarex.domas.virtual_classroom.entity.Student;
+import com.softarex.domas.virtual_classroom.entity.student.Student;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

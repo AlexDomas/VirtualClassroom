@@ -1,5 +1,6 @@
-package com.softarex.domas.virtual_classroom.entity;
+package com.softarex.domas.virtual_classroom.entity.student;
 
+import com.softarex.domas.virtual_classroom.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class Student extends BaseEntity implements Serializable {
 
     private String name;
+
     private boolean hand;
 
 }
