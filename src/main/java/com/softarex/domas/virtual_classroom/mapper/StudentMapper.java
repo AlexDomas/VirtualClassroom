@@ -1,4 +1,4 @@
-package com.softarex.domas.virtual_classroom.util;
+package com.softarex.domas.virtual_classroom.mapper;
 
 import com.softarex.domas.virtual_classroom.dto.StudentDto;
 import com.softarex.domas.virtual_classroom.entity.student.Student;
