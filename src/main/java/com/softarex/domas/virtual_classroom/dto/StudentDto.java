@@ -4,6 +4,7 @@ import com.softarex.domas.virtual_classroom.dto.validator.group.OnCreate;
 import com.softarex.domas.virtual_classroom.dto.validator.group.OnUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ import static com.softarex.domas.virtual_classroom.dto.validator.regexp.RegularE
 
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 public class StudentDto {
 
     @Null(groups = OnCreate.class, message = MESSAGE_STUDENT_ID_IS_NULL)
