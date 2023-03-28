@@ -13,7 +13,7 @@ public class StudentMapper {
     public Student toStudentEntity(StudentDto studentDto) {
         Student student = new Student();
         student.setId(studentDto.getId());
-        student.setName(student.getName());
+        student.setName(studentDto.getName());
         student.setHand(studentDto.isHand());
         return student;
     }

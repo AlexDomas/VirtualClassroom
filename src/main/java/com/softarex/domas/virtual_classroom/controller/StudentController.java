@@ -16,6 +16,7 @@ import static com.softarex.domas.virtual_classroom.dto.validator.constant.Messag
 
 @RestController
 @RequiredArgsConstructor
+@Validated
 @RequestMapping("/api/students")
 public class StudentController {
 
