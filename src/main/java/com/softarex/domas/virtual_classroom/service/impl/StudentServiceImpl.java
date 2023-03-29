@@ -34,6 +34,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void deleteById(UUID id) {
+        studentRepository.deleteById(id);
+    }
+
+    @Override
     public StudentDto create(StudentDto studentDto) {
         if(studentRepository.existsByName(studentDto.getName())){
             throw new StudentExistException(studentDto.getName());

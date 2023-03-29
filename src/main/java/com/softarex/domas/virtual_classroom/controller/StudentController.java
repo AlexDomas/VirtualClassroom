@@ -33,6 +33,12 @@ public class StudentController {
         return studentService.getAll();
     }
 
+    @GetMapping("/{studentId}")
+    public void deleteById(@PathVariable("studentId")
+                              @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID id) {
+        studentService.deleteById(id);
+    }
+
     @PostMapping
     @Validated(value = {OnCreate.class})
     public StudentDto create(@RequestBody @Valid StudentDto studentDto) {

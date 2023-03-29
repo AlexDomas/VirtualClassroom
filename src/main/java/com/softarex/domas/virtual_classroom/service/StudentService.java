@@ -11,6 +11,8 @@ public interface StudentService {
 
     StudentDto getById(UUID id);
 
+    void deleteById(UUID id);
+
     StudentDto create(StudentDto studentDto);
 
 }

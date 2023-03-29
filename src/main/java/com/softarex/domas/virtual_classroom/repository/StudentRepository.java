@@ -10,12 +10,12 @@ import java.util.UUID;
 @Repository
 public interface StudentRepository extends CrudRepository<Student, UUID> {
 
-    boolean existsById(UUID uuid);
+    boolean existsById(UUID id);
 
     boolean existsByName(String name);
 
     List<Student> findAll();
 
-    List<Student> findByName(String name);
+    void deleteById(UUID id);
 
 }
