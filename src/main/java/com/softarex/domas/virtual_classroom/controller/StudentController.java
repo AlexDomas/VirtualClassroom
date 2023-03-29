@@ -2,6 +2,7 @@ package com.softarex.domas.virtual_classroom.controller;
 
 import com.softarex.domas.virtual_classroom.dto.StudentDto;
 import com.softarex.domas.virtual_classroom.dto.validator.group.OnCreate;
+import com.softarex.domas.virtual_classroom.dto.validator.group.OnUpdate;
 import com.softarex.domas.virtual_classroom.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -23,18 +24,24 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("/{studentId}")
-    public StudentDto getById(@PathVariable("studentId")
+    public StudentDto getStudentById(@PathVariable("studentId")
                            @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID uuid) {
         return studentService.getById(uuid);
     }
 
     @GetMapping
-    public List<StudentDto> getAll() {
+    public List<StudentDto> getAllStudents() {
         return studentService.getAll();
     }
 
-    @GetMapping("/{studentId}")
-    public void deleteById(@PathVariable("studentId")
+    @PutMapping
+    @Validated(value = {OnUpdate.class})
+    public StudentDto updateStudentData(@RequestBody @Valid StudentDto studentDto) {
+        return studentService.update(studentDto);
+    }
+
+    @DeleteMapping("/{studentId}")
+    public void deleteStudentById(@PathVariable("studentId")
                               @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID id) {
         studentService.deleteById(id);
     }

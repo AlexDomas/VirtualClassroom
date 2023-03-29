@@ -10,7 +10,7 @@ public interface MessageErrorStudentDTOConstant {
 
     String MESSAGE_STUDENT_NAME_LENGTH = "Student name length must be between ( " + MIN_LENGTH_STUDENT_NAME + ", " + MAX_LENGTH_STUDENT_NAME + " )";
 
-    String MESSAGE_STUDENT_NAME_REGULAR_EXPRESSION = "The entered first or last name does not match the regular expression";
+    String MESSAGE_STUDENT_NAME_REGULAR_EXPRESSION = "Student name must contain only english letters";
 
     String MESSAGE_STUDENT_ID_IS_NULL = "The unique identifier must be specified";
 

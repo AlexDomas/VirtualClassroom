@@ -8,12 +8,14 @@ import com.softarex.domas.virtual_classroom.mapper.StudentMapper;
 import com.softarex.domas.virtual_classroom.repository.StudentRepository;
 import com.softarex.domas.virtual_classroom.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-import static com.softarex.domas.virtual_classroom.exception.constant.MessageExceptionConstant.*;
+import static com.softarex.domas.virtual_classroom.exception.constant.MessageExceptionConstant.MESSAGE_STUDENT_NAME_IS_EXIST;
+import static com.softarex.domas.virtual_classroom.exception.constant.MessageExceptionConstant.MESSAGE_STUDENT_NOT_FOUND_BY_ID;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -21,6 +23,8 @@ public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
 
     private StudentMapper studentMapper;
+
+    private SimpMessagingTemplate simpMessagingTemplate;
 
     @Override
     public List<StudentDto> getAll() {
@@ -34,8 +38,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public StudentDto update(StudentDto studentDto) {
+        Student student = studentRepository
+                .findById(studentDto.getId())
+                .orElseThrow(() -> new StudentNotFoundException(MESSAGE_STUDENT_NOT_FOUND_BY_ID));
+
+        studentMapper.update(student, studentDto);
+        student = studentRepository.save(student);
+
+        simpMessagingTemplate.convertAndSend("/topic/members/update", student);
+
+        return studentMapper.toStudentDto(student);
+    }
+
+    @Override
     public void deleteById(UUID id) {
         studentRepository.deleteById(id);
+        simpMessagingTemplate.convertAndSend("/topic/members/delete", id);
     }
 
     @Override
@@ -45,6 +64,7 @@ public class StudentServiceImpl implements StudentService {
         }
         Student student = studentMapper.toStudentEntity(studentDto);
         Student saveStudent = studentRepository.save(student);
+        simpMessagingTemplate.convertAndSend("/topic/members/create", saveStudent);
         return studentMapper.toStudentDto(saveStudent);
     }
 
@@ -56,6 +76,11 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     public void setStudentMapper(StudentMapper studentMapper) {
         this.studentMapper = studentMapper;
+    }
+
+    @Autowired
+    public void setSimpMessagingTemplate(SimpMessagingTemplate simpMessagingTemplate) {
+        this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
 }

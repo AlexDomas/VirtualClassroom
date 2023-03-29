@@ -32,4 +32,10 @@ public class StudentMapper {
         return listOfStudentDto;
     }
 
+    public Student update(Student student, StudentDto studentDto) {
+        student.setName(studentDto.getName());
+        student.setHand(studentDto.isHand());
+        return student;
+    }
+
 }
