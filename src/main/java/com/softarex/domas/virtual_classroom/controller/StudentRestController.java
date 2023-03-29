@@ -19,13 +19,13 @@ import static com.softarex.domas.virtual_classroom.dto.validator.constant.Messag
 @RequiredArgsConstructor
 @Validated
 @RequestMapping("/api/students")
-public class StudentController {
+public class StudentRestController {
 
     private final StudentService studentService;
 
     @GetMapping("/{studentId}")
     public StudentDto getStudentById(@PathVariable("studentId")
-                           @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID uuid) {
+                                     @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID uuid) {
         return studentService.getById(uuid);
     }
 
@@ -42,7 +42,7 @@ public class StudentController {
 
     @DeleteMapping("/{studentId}")
     public void deleteStudentById(@PathVariable("studentId")
-                              @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID id) {
+                                  @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID id) {
         studentService.deleteById(id);
     }
 

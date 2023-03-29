@@ -18,7 +18,7 @@ public class StudentMapper {
         return student;
     }
 
-    public StudentDto toStudentDto(Student student){
+    public StudentDto toStudentDto(Student student) {
         StudentDto studentDto = new StudentDto();
         studentDto.setId(student.getId());
         studentDto.setName(student.getName());
@@ -26,7 +26,7 @@ public class StudentMapper {
         return studentDto;
     }
 
-    public List<StudentDto> toStudentDtoList(List<Student> listOfStudentEntities){
+    public List<StudentDto> toStudentDtoList(List<Student> listOfStudentEntities) {
         List<StudentDto> listOfStudentDto = new ArrayList<>(listOfStudentEntities.size());
         listOfStudentEntities.forEach(student -> listOfStudentDto.add(toStudentDto(student)));
         return listOfStudentDto;

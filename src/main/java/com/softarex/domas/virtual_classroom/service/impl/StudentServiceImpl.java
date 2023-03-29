@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import static com.softarex.domas.virtual_classroom.exception.constant.MessageExceptionConstant.MESSAGE_STUDENT_NAME_IS_EXIST;
 import static com.softarex.domas.virtual_classroom.exception.constant.MessageExceptionConstant.MESSAGE_STUDENT_NOT_FOUND_BY_ID;
 
 @Service

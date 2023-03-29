@@ -20,18 +20,18 @@ public class StudentRestControllerExceptionHandler {
     @ExceptionHandler(value = {StudentExistException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public Map<String, String> handleStudentExistException(final StudentExistException ex) {
+    public Map<String, String> handleStudentExistException(final StudentExistException studentExistException) {
         Map<String, String> map = new HashMap<>();
-        map.put("internalServerError", ex.getMessage());
+        map.put("internalServerError", studentExistException.getMessage());
         return map;
     }
 
     @ExceptionHandler(value = {StudentNotFoundException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public Map<String, String> handleStudentNotFoundException(final StudentNotFoundException ex) {
+    public Map<String, String> handleStudentNotFoundException(final StudentNotFoundException studentNotFoundException) {
         Map<String, String> map = new HashMap<>();
-        map.put("internalServerError", ex.getMessage());
+        map.put("internalServerError", studentNotFoundException.getMessage());
         return map;
     }
 

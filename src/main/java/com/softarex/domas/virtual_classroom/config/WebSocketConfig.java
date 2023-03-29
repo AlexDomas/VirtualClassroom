@@ -1,5 +1,6 @@
 package com.softarex.domas.virtual_classroom.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -11,9 +12,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    @Value("${app.allowed}")
+    private String allowed;
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("http://localhost:3000").withSockJS();
+        registry.addEndpoint("/ws").setAllowedOrigins(allowed).withSockJS();
     }
 
     @Override
