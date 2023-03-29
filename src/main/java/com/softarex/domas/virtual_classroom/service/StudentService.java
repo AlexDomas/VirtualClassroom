@@ -1,7 +1,6 @@
 package com.softarex.domas.virtual_classroom.service;
 
 import com.softarex.domas.virtual_classroom.dto.StudentDto;
-import com.softarex.domas.virtual_classroom.entity.student.Student;
 
 import java.util.List;
 import java.util.UUID;

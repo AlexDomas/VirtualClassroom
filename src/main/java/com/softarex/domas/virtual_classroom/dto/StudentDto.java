@@ -2,7 +2,6 @@ package com.softarex.domas.virtual_classroom.dto;
 
 import com.softarex.domas.virtual_classroom.dto.validator.group.OnCreate;
 import com.softarex.domas.virtual_classroom.dto.validator.group.OnUpdate;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
