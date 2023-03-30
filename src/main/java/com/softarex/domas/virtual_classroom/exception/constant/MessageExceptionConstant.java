@@ -4,6 +4,6 @@ public interface MessageExceptionConstant {
 
     String MESSAGE_STUDENT_NOT_FOUND_BY_ID = "Student not found by id";
 
-    String MESSAGE_STUDENT_NAME_IS_EXIST = " - such name of student is exist";
+    String MESSAGE_STUDENT_NAME_IS_EXIST = " - such name of student exists";
 
 }
