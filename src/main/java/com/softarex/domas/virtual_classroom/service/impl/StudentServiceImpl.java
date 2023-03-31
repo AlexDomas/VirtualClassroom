@@ -42,8 +42,8 @@ public class StudentServiceImpl implements StudentService {
                 .findById(studentDto.getId())
                 .orElseThrow(() -> new StudentNotFoundException(MESSAGE_STUDENT_NOT_FOUND_BY_ID));
 
-        studentMapper.update(student, studentDto);
-        student = studentRepository.save(student);
+        Student newStudent = studentMapper.update(student, studentDto);
+        studentRepository.save(newStudent);
 
         simpMessagingTemplate.convertAndSend("/topic/members/update", student);
 
