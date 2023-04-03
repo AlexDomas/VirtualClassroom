@@ -48,9 +48,9 @@ public class StudentRestController {
         studentService.deleteById(id);
     }
 
-    @PostMapping
+    @PostMapping("/login")
     @Validated(value = {OnCreate.class})
-    public StudentDto create(@RequestBody @Valid StudentDto studentDto) {
+    public StudentDto login(@RequestBody @Valid StudentDto studentDto) {
         return studentService.create(studentDto);
     }
 
