@@ -10,6 +10,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String LOGIN_PATH = "/api/students/login/";
+
     private static final String[] AUTHENTICATION_WHITELIST = {
             "/*",
             "/api/students/*",
@@ -21,7 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().and()
+                .cors()
+                .and()
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -32,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/api/students/login/")
+                .loginPage(LOGIN_PATH)
                 .and()
                 .logout()
                 .permitAll();
