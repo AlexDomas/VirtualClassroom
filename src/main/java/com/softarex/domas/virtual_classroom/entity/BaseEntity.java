@@ -22,6 +22,6 @@ public class BaseEntity {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(name = "id", updatable = false, nullable = false)
-    protected UUID id;
+    private UUID id;
 
 }

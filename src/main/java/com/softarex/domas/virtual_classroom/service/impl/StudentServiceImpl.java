@@ -7,7 +7,7 @@ import com.softarex.domas.virtual_classroom.exception.StudentNotFoundException;
 import com.softarex.domas.virtual_classroom.mapper.StudentMapper;
 import com.softarex.domas.virtual_classroom.repository.StudentRepository;
 import com.softarex.domas.virtual_classroom.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +17,14 @@ import java.util.UUID;
 import static com.softarex.domas.virtual_classroom.exception.constant.MessageExceptionConstant.MESSAGE_STUDENT_NOT_FOUND_BY_ID;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
-    private StudentMapper studentMapper;
+    private final StudentMapper studentMapper;
 
-    private SimpMessagingTemplate simpMessagingTemplate;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     @Override
     public List<StudentDto> getAll() {
@@ -37,9 +38,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDto update(StudentDto studentDto) {
+    public StudentDto update(UUID id, StudentDto studentDto) {
         Student student = studentRepository
-                .findById(studentDto.getId())
+                .findById(id)
                 .orElseThrow(() -> new StudentNotFoundException(MESSAGE_STUDENT_NOT_FOUND_BY_ID));
 
         Student newStudent = studentMapper.update(student, studentDto);
@@ -65,21 +66,6 @@ public class StudentServiceImpl implements StudentService {
         Student saveStudent = studentRepository.save(student);
         simpMessagingTemplate.convertAndSend("/topic/members/create", saveStudent);
         return studentMapper.toStudentDto(saveStudent);
-    }
-
-    @Autowired
-    public void setStudentRepository(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
-
-    @Autowired
-    public void setStudentMapper(StudentMapper studentMapper) {
-        this.studentMapper = studentMapper;
-    }
-
-    @Autowired
-    public void setSimpMessagingTemplate(SimpMessagingTemplate simpMessagingTemplate) {
-        this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
 }

@@ -34,10 +34,12 @@ public class StudentRestController {
         return studentService.getAll();
     }
 
-    @PutMapping
+    @PutMapping("/{studentId}")
     @Validated(value = {OnUpdate.class})
-    public StudentDto updateStudentData(@RequestBody @Valid StudentDto studentDto) {
-        return studentService.update(studentDto);
+    public StudentDto updateStudentData(@PathVariable("studentId")
+                                            @NotNull(message = MESSAGE_STUDENT_ID_IS_NULL) UUID id,
+                                        @RequestBody @Valid StudentDto studentDto) {
+        return studentService.update(id, studentDto);
     }
 
     @DeleteMapping("/{studentId}")

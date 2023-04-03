@@ -13,7 +13,7 @@ public interface StudentService {
 
     StudentDto getById(UUID id);
 
-    StudentDto update(StudentDto studentDto);
+    StudentDto update(UUID id, StudentDto studentDto);
 
     void deleteById(UUID id);
 
